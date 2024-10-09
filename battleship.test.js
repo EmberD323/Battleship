@@ -1,4 +1,4 @@
-const {Ship,Gameboard} = require('./battleship');
+const {Ship,Gameboard,Player} = require('./battleship');
 describe("Ship", () => {
     test('new ship should have length as input, 0hits, and is afloat', () => {
         expect(new Ship(1)).toEqual({length:1, hits:0, status:"afloat"});
@@ -91,6 +91,67 @@ describe("Gameboard", () => {
         expect(gameboard.board[3][6]).toBe(undefined);
         expect(gameboard.placeShip(ship2,3,3,1)).toBe("Error:overlap of ships, choose another location");
     });
-    //check if another shit is already there
+    test('ship recieves attack', () => {
+        let gameboard =  new Gameboard();
+        let ship1 = new Ship(3);
+        gameboard.placeShip(ship1,3,3,1);
+        gameboard.receiveAttack(3,3);
+        expect(ship1.hits).toBe(1);
+        expect(ship1.status).toBe("afloat");
+    });
+    test('ship does not recieve attack', () => {
+        let gameboard =  new Gameboard();
+        let ship1 = new Ship(3);
+        gameboard.placeShip(ship1,3,3,1);
+        gameboard.receiveAttack(0,0);
+        expect(ship1.hits).toBe(0);
+        expect(gameboard.board[0][0]).toBe("miss");
+        expect(ship1.status).toBe("afloat");
+    });
+    test('one ship sunk from attack', () => {
+        let gameboard =  new Gameboard();
+        let ship1 = new Ship(2);
+        let ship2 = new Ship(2);
+        gameboard.placeShip(ship1,3,3,1);
+        gameboard.placeShip(ship2,0,0,1);
+        gameboard.receiveAttack(3,3);
+        gameboard.receiveAttack(3,4);
+        expect(ship1.hits).toBe(2);
+        expect(ship1.status).toBe("sunk");
+        expect(ship2.hits).toBe(0);
+        expect(ship2.status).toBe("afloat");
+        expect(gameboard.result).toBe("In play");
+    });
+    test('all ships sunk from attack', () => {
+        let gameboard =  new Gameboard();
+        let ship1 = new Ship(2);
+        let ship2 = new Ship(2);
+        gameboard.placeShip(ship1,3,3,1);
+        gameboard.placeShip(ship2,0,0,1);
+        gameboard.receiveAttack(3,3);
+        gameboard.receiveAttack(3,4);
+        gameboard.receiveAttack(0,0);
+        gameboard.receiveAttack(0,1);
+        expect(ship1.hits).toBe(2);
+        expect(ship1.status).toBe("sunk");
+        expect(ship2.hits).toBe(2);
+        expect(ship2.status).toBe("sunk");
+        expect(gameboard.result).toBe("All ships sunk");
+    });
+    test('report all misses', () => {
+        let gameboard =  new Gameboard();
+        gameboard.receiveAttack(3,3);
+        gameboard.receiveAttack(3,4);
+        gameboard.receiveAttack(0,0);
+        gameboard.receiveAttack(0,1);
+        expect(gameboard.misses).toEqual([[3,3],[3,4],[0,0],[0,1]]);
+    });
+   
     
 }); 
+describe("Player", () => {
+    test('player object has type of computer', () => {
+        let player = new Player("computer")
+        expect(player.type).toEqual("computer");
+    });
+});
