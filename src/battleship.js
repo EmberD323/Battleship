@@ -3,6 +3,7 @@ class Ship{
         this.length = length;
         this.hits = 0;
         this.status = "afloat";
+        this.hitLocation = [];
     }
     hit(){
         this.hits += 1;
@@ -76,6 +77,7 @@ class Gameboard{
         }
         else{
             gameboardPosition.hit();
+            gameboardPosition.hitLocation.push([coord1,coord2]);
             this.boardStatus();
         }
         
@@ -110,4 +112,4 @@ class Player{
     }
 }
 
-module.exports = {Ship, Gameboard,Player};
+export {Ship, Gameboard,Player};
