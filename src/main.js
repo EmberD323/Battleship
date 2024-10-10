@@ -1,5 +1,5 @@
 import "./style.css";
-import { Ship, Gameboard,Player } from "./battleship.js";
+import { Ship,Player } from "./battleship.js";
 //playerOne and gameboard setting up
 let playerOne = new Player("real");
 let playerOneBoard = playerOne.gameboard;

@@ -1,31 +1,33 @@
-.body{
+:root{
     box-sizing: border-box;
+    --primary-color:rgb(75, 74, 74);
+    --secondary-color:rgb(0, 0, 0);
+    --army-color:rgb(16, 110, 47);
+    color:rgb(204, 204, 204);
+    font-family: "Black Ops One", system-ui;
 }
-.board{
-    display: grid;
-    grid-template-columns: repeat(10,25px);
-    grid-template-rows: repeat(10,25px);
 
-
-}
-.board>*{
-    border: 1px solid red;
-}
-#ship,.grid>*{
-    background-color: blue ;
+body{
+    margin: 0px;
 }
 #shipHit{
-    background-color: blue ;
-    color: red;
+    background-color:var(--army-color) ;
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 25px
 
 }
 #shipSunk{
-    background-color: rgb(0, 0, 0) ;
-    color: rgb(255, 0, 0);
+    background-color: rgb(128, 0, 0) ;
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 25px
 }
 #miss{
-    background-color: lightgray ;
-    color: red;
+    background-color: rgb(131, 131, 131) ;
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 25px
 }
 
 .ship>.grid{
@@ -33,10 +35,112 @@
     grid-template-columns: repeat(5,25px);
     grid-template-rows: repeat(1,25px);
 }
-.grid>*{
-    border: 1px solid red;
+
+
+
+/*header*/
+.header{
+    display: flex;
+    gap:20px;
+    background-color: var(--primary-color);
+    font-size: 45px;
+    align-items: center;
+    justify-content: center;
+}
+.header>img{
+    width:100px
+}
+/*gameboards*/
+
+.gameboards{
+    background-color: var(--primary-color);
+    background-image: url("https://img.freepik.com/premium-vector/vector-grey-camouflage-background-military_129160-11.jpg");
+    display: flex;
+    justify-content: center;
+    gap:200px;
+    padding:30px;
+}
+.name{
+    font-size: 25px;
+    text-align: center;
+}
+.board{
+    display: grid;
+    grid-template-columns: repeat(10,35px);
+    grid-template-rows: repeat(10,35px);
+    position: relative;
 
 }
+.board>*{
+    border: 1px solid rgb(0, 0, 0);
+    background-color: var(--primary-color);
+    
+}
+.xcoords{
+    display: flex;
+}
+.xcoords>*,.ycoordsOne>*,.ycoordsTwo>*{
+    width:33px;
+    height:33px;
+    font-size: smaller;
+    background-color: var(--primary-color);
+    border: 1px solid var(--army-color);
+    text-align: center;
+}
+.ycoordsOne{
+    position: absolute;
+    left: 475px;
+    
+}
+.ycoordsTwo{
+    position: absolute;
+    right: 470px;
+}
+/*announcements*/
+.announce{
+    background-color: var(--primary-color);
+    font-size: 30px;
+    text-align: center;
+    padding:20px;
+}
+/*ships*/
+.shipSizes{
+    background-color: var(--primary-color);
+    padding: 20px;
+}
+.shipSizes{
+    padding:25px
+
+}
+.ship{
+    display:flex;
+    gap:20px;
+    padding:10px
+}
+#ship,.grid>*{
+    background-color: var(--army-color) ;
+}
+.grid>*{
+    border: 1px solid var(--secondary-color);
+
+}
+.text{
+    
+    font-size: 20px;
+}
+button{
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    line-height: 11px; padding: 7px; border-radius: 24px;
+    font-family: "Black Ops One", system-ui;
+    box-shadow: rgb(0, 0, 0)0px 0px 10px 5px; 
+    border: 1px solid rgb(0, 0, 0);
+    background-color: var(--primary-color)
+}
+button:hover{
+    background: var(--army-color);
+}
+
 /* The dialog (background) */
 ::backdrop {
     background-color: rgb(0,0,0); /* Fallback color */
@@ -44,12 +148,16 @@
 }
 dialog{
     width:500px;
-}
+    padding: 20px;
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+
 }
+form>*{
+    padding: 5px
+}
+form>button{
+    margin:10px
+}
+fieldset {
+    border: 0;
+    margin:0}

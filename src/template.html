@@ -3,13 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <title>Battleship</title>
 </head>
 <body>
-    <div class="header"></div>
+    <div class="header">
+
+        <div class="title">Battleships</div>
+        <img src="https://www.reshot.com/preview-assets/icons/3S2UXP5MHE/battleship-3S2UXP5MHE.svg" alt="battleship outline" color>
+    </div>
     <div class="gameboards">
         <div class="playerOne">
             <div class="name">Player 1</div>
+            <div class="xcoords">
+                <div>x=0</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
+            <div class="ycoordsOne">
+                <div>Y=0</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
             <div class="board">
                 <div id="space"class="index00"></div>
                 <div id="space"class="index01"></div>
@@ -115,6 +146,30 @@
         </div>
         <div class="playerTwo">
             <div class="name">Player 2 (computer)</div>
+            <div class="xcoords">
+                <div>x=0</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
+            <div class="ycoordsTwo">
+                <div>Y=0</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+            </div>
             <div class="board">
                 <div id="space"class="index00"></div>
                 <div id="space"class="index01"></div>
@@ -219,7 +274,7 @@
             </div>
         </div>
     </div>
-    <div class="announce">Place your ships and then play the game!</div>
+    <div class="announce">Place your ships below and then play the game!</div>
     
     <div class="shipSizes">
         <div class="ship">
@@ -281,7 +336,7 @@
             <input type="number" id="ship1y"min="0"max="9" placeholder="0-9" value = "0"required>
             <span class="ship1y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship1orientation" value="0" checked>
@@ -317,7 +372,7 @@
             <input type="number" id="ship2y"min="0"max="9" placeholder="0-9"value = "1"required>
             <span class="ship2y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship2orientation" value="0" checked>
@@ -335,7 +390,7 @@
             <input type="number" id="ship3y"min="0"max="9" placeholder="0-9"value = "2"required>
             <span class="ship3y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship3orientation" value="0" checked>
@@ -367,7 +422,7 @@
             <input type="number" id="ship4y"min="0"max="9" placeholder="0-9"value = "3"required>
             <span class="ship4y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship4orientation" value="0" checked>
@@ -385,7 +440,7 @@
             <input type="number" id="ship5y"min="0"max="9" placeholder="0-9"value = "4"required>
             <span class="ship5y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship5orientation" value="0" checked>
@@ -403,7 +458,7 @@
             <input type="number" id="ship6y"min="0"max="9" placeholder="0-9"value = "5"required>
             <span class="ship6y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship6orientation" value="0" checked>
@@ -434,7 +489,7 @@
             <input type="number" id="ship7y"min="0"max="9" placeholder="0-9"value = "6"required>
             <span class="ship7y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship7orientation" value="0" checked>
@@ -452,7 +507,7 @@
             <input type="number" id="ship8y"min="0"max="9" placeholder="0-9"value = "7"required>
             <span class="ship8y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship8orientation" value="0" checked>
@@ -488,7 +543,7 @@
             <input type="number" id="ship10y"min="0"max="9" placeholder="0-9"value = "9"required>
             <span class="ship10y" aria-live="polite"></span>
             <fieldset>
-                <legend>Select a ship orientation</legend>
+                <legend>Select a ship orientation:</legend>
                 <div>
                     <label for="vertical">Vertical</label>
                     <input type="radio" id="vertical" name="ship10orientation" value="0" checked>
@@ -506,6 +561,8 @@
         <span class="close5">&times;</span>
         <p></p>
     </dialog>
+    
+    
     
 </body>
 </html>
