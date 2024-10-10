@@ -219,8 +219,8 @@
             </div>
         </div>
     </div>
+    <div class="announce">Place your ships and then play the game!</div>
     
-    <button>Place Ships</button>
     <div class="shipSizes">
         <div class="ship">
             <div class="grid">
@@ -231,6 +231,7 @@
                 <div class="block"></div>
             </div>
             <div class="text"> x 1</div>
+            <button class="modalOpen1">Place Ship</button>
         </div>
         <div class="ship">
             <div class="grid">
@@ -240,6 +241,7 @@
                 <div class="block"></div>
             </div>
             <div class="text"> x 2</div>
+            <button class="modalOpen2" style="display:none">Place Ships</button>
         </div>
         <div class="ship">
             <div class="grid">
@@ -248,6 +250,7 @@
                 <div class="block"></div>
             </div>
             <div class="text"> x 3</div>
+            <button class="modalOpen3"style="display:none">Place Ships</button>
         </div>
         <div class="ship">
             <div class="grid">
@@ -255,9 +258,254 @@
                 <div class="block"></div>
             </div>
             <div class="text"> x 4</div>
+            <button class="modalOpen4"style="display:none">Place Ships</button>
         </div>
     </div>
-    <div class="footer"></div>
+    <dialog class="dialog1">
+        <span class="close1">&times;</span>
+        <form>
+            <div class="ship">
+                <div class="grid">
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                </div>
+            </div>
+            <p>Ship one coordinates:</p>
+            <label for="ship1x">y coord:</label>
+            <input type="number" id="ship1x"min="0"max="9" placeholder="0-9" value = "0"required>
+            <span class="ship1x" aria-live="polite"></span>
+            <label for="ship1y">x coord:</label>
+            <input type="number" id="ship1y"min="0"max="9" placeholder="0-9" value = "0"required>
+            <span class="ship1y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship1orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship1orientation" value="1">
+                </div>
+            </fieldset>
+            <button type="submit" class="submit1">Submit</button>
+            <span class="ship1Error" aria-live="polite"></span>
+            
+            
+            
+        </form>
+    </dialog>
+    <dialog class="dialog2">
+        <span class="close2">&times;</span>
+        <form>
+            <div class="ship">
+                <div class="grid">
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                </div>
+            </div>
+            <p>Ship two coordinates:</p>
+            <label for="ship2x">y coord:</label>
+            <input type="number" id="ship2x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship2x" aria-live="polite"></span>
+            <label for="ship2y">x coord:</label>
+            <input type="number" id="ship2y"min="0"max="9" placeholder="0-9"value = "1"required>
+            <span class="ship2y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship2orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship2orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship three coordinates:</p>
+            <label for="ship3x">y coord:</label>
+            <input type="number" id="ship3x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship3x" aria-live="polite"></span>
+            <label for="ship1y">x coord:</label>
+            <input type="number" id="ship3y"min="0"max="9" placeholder="0-9"value = "2"required>
+            <span class="ship3y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship3orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship3orientation" value="1">
+                </div>
+            </fieldset>
+            <button type="submit" class="submit2">Submit</button>
+            <span class="ship2Error" aria-live="polite"></span>
+        </form>
+    </dialog>
+    <dialog class="dialog3">
+        <span class="close3">&times;</span>
+        <form>
+            <div class="ship">
+                <div class="grid">
+                    <div class="block"></div>
+                    <div class="block"></div>
+                    <div class="block"></div>
+                </div>
+            </div>
+            <p>Ship four coordinates:</p>
+            <label for="ship4x">y coord:</label>
+            <input type="number" id="ship4x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship4x" aria-live="polite"></span>
+            <label for="ship4y">x coord:</label>
+            <input type="number" id="ship4y"min="0"max="9" placeholder="0-9"value = "3"required>
+            <span class="ship4y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship4orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship4orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship five coordinates:</p>
+            <label for="ship5x">y coord:</label>
+            <input type="number" id="ship5x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship5x" aria-live="polite"></span>
+            <label for="ship5y">x coord:</label>
+            <input type="number" id="ship5y"min="0"max="9" placeholder="0-9"value = "4"required>
+            <span class="ship5y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship5orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship5orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship six coordinates:</p>
+            <label for="ship6x">y coord:</label>
+            <input type="number" id="ship6x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship6x" aria-live="polite"></span>
+            <label for="ship6y">x coord:</label>
+            <input type="number" id="ship6y"min="0"max="9" placeholder="0-9"value = "5"required>
+            <span class="ship6y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship6orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship6orientation" value="1">
+                </div>
+            </fieldset>
+            <button type="submit" class="submit3">Submit</button>
+            <span class="ship3Error" aria-live="polite"></span>
+        </form>
+    </dialog>
+    <dialog class="dialog4">
+        <span class="close4">&times;</span>
+        <form>
+            <div class="ship">
+                <div class="grid">
+                    <div class="block"></div>
+                    <div class="block"></div>
+                </div>
+            </div>
+            <p>Ship seven coordinates:</p>
+            <label for="ship7x">y coord:</label>
+            <input type="number" id="ship7x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship7x" aria-live="polite"></span>
+            <label for="ship7y">x coord:</label>
+            <input type="number" id="ship7y"min="0"max="9" placeholder="0-9"value = "6"required>
+            <span class="ship7y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship7orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship7orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship eight coordinates:</p>
+            <label for="ship8x">y coord:</label>
+            <input type="number" id="ship8x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship8x" aria-live="polite"></span>
+            <label for="ship8y">x coord:</label>
+            <input type="number" id="ship8y"min="0"max="9" placeholder="0-9"value = "7"required>
+            <span class="ship8y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship8orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship8orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship nine coordinates:</p>
+            <label for="ship9x">y coord:</label>
+            <input type="number" id="ship9x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship9x" aria-live="polite"></span>
+            <label for="ship9y">x coord:</label>
+            <input type="number" id="ship9y"min="0"max="9" placeholder="0-9"value = "8"required>
+            <span class="ship9y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship9orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship9orientation" value="1">
+                </div>
+            </fieldset>
+            <p>Ship ten coordinates:</p>
+            <label for="ship10x">y coord:</label>
+            <input type="number" id="ship10x"min="0"max="9" placeholder="0-9"value = "0"required>
+            <span class="ship10x" aria-live="polite"></span>
+            <label for="ship10y">x coord:</label>
+            <input type="number" id="ship10y"min="0"max="9" placeholder="0-9"value = "9"required>
+            <span class="ship10y" aria-live="polite"></span>
+            <fieldset>
+                <legend>Select a ship orientation</legend>
+                <div>
+                    <label for="vertical">Vertical</label>
+                    <input type="radio" id="vertical" name="ship10orientation" value="0" checked>
+                </div>
+                <div>
+                    <label for="horizontal">horizontal</label>
+                    <input type="radio" id="horizontal" name="ship10orientation" value="1">
+                </div>
+            </fieldset>
+            <button type="submit" class="submit4">Submit</button>
+            <span class="ship4Error" aria-live="polite"></span>
+        </form>
+    </dialog>
+    <dialog class="win">
+        <span class="close5">&times;</span>
+        <p></p>
+    </dialog>
     
 </body>
 </html>

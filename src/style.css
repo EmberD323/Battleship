@@ -1,3 +1,6 @@
+.body{
+    box-sizing: border-box;
+}
 .board{
     display: grid;
     grid-template-columns: repeat(10,25px);
@@ -33,4 +36,20 @@
 .grid>*{
     border: 1px solid red;
 
+}
+/* The dialog (background) */
+::backdrop {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+dialog{
+    width:500px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }

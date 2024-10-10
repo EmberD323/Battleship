@@ -66,6 +66,33 @@ class Gameboard{
             }
         }
     }
+    checkIfEmpty(coord1,coord2,length,direction){
+        let boardLength = this.board.length;
+        if(direction == 0){//0 = vertical
+            for(let i=0;i<length;i++){
+                let verticalIndex = coord1+i;
+                if(verticalIndex > boardLength-1){
+                    verticalIndex = boardLength - 1 -i;
+                }
+               if(this.board[verticalIndex][coord2] !== undefined){
+                return false
+               }
+            }
+            return true
+        }else{//horizontal
+            for(let i=0;i<length;i++){
+                let horizontalIndex = coord2+i;
+                if(horizontalIndex > boardLength-1){
+                    horizontalIndex = boardLength - 1 -i;
+                }
+               if(this.board[coord1][horizontalIndex] !== undefined){
+                return false
+               }
+            }
+            return true
+        }
+
+    }
     receiveAttack(coord1,coord2){
         let gameboardPosition = this.board[coord1][coord2];
         if(gameboardPosition == undefined){
