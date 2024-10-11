@@ -7,6 +7,8 @@ let playerTwo = new Player("computer");
 let playerTwoBoard = playerTwo.gameboard;
 let playerOneCounter=0;
 let playerTwoCounter=0;
+let winPopUp  = document.querySelector(".win");
+let winText = document.querySelector(".win>p");
 
 const Display = (function(){
     function gameboard(gameboard,player){
@@ -119,7 +121,6 @@ const Computer = (function(){
         let cellNumberString =rowNumber.toString()+columnNumber.toString();
         let cellDOM = document.querySelector(".playerOne>.board>.index"+cellNumberString);//fix: replace with getRandomCell
         //if it is space or ship not hit then attack & display & return
-        setTimeout(()=>{
             if(gameboardAttacked.board[rowNumber][columnNumber]==undefined || cellDOM.textContent !== "x"){
                 //or dom display doesnt have an x
                 gameboardAttacked.receiveAttack(rowNumber,columnNumber);
@@ -130,8 +131,6 @@ const Computer = (function(){
              else{
                  Computer.takeTurn();
              }
-        },1000)
-        
     }
     function placeShips(){
         let shipLengths =[5,4,4,3,3,3,2,2,2,2];
@@ -161,12 +160,13 @@ const Computer = (function(){
     }
     return{takeTurn, placeShips}
 })();
-
+let text = document.querySelector(".announce");
 const Game = (function(){
     function play(){
         let allSquareDOM = document.querySelectorAll(".playerTwo>.board>*");
         allSquareDOM.forEach((cell)=>{
             cell.addEventListener("click",(e)=>{
+                text.textContent = "";
                 if(playerOneCounter == playerTwoCounter){
                     //if the rounds are off only allow to player one,else player two
                     let playerAttacked = playerTwo;
@@ -189,7 +189,7 @@ const Game = (function(){
                         playerOneCounter++;
                         //display attack
                         Display.hiddenGameboard(gameboardAttacked,"playerTwo");
-                        let winPopUp  = document.querySelector(".win");
+                        
                         let closeButton5 = document.querySelector(".close5");
                         closeButton5.addEventListener("click",(e)=>{
                             winPopUp.close();
@@ -203,17 +203,20 @@ const Game = (function(){
                         }
                     }
                 }
+                else{
+                    text.textContent = "Computer thinking, wait your turn!";
+                }
             });
         });
     }
     function winCheck(){
         if(playerTwoBoard.result == "All ships sunk"){
-            text.textContent = "Game over. Winner is player 1!";
+            winText.textContent = "Game over. Winner is player 1!";
             winPopUp.showModal();
             return true
         }
         else if(playerOneBoard.result == "All ships sunk"){
-            text.textContent = "Game over. Winner is player 2!";
+            winText.textContent = "Game over. Winner is player 2!";
             winPopUp.showModal();
             return true
         }
