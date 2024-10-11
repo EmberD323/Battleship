@@ -116,26 +116,23 @@ const Display = (function(){
 const Computer = (function(){
     function takeTurn(){
         let playerAttacked = playerOne;
-        let computerGameboard = playerTwo.gameboard;
         let gameboardAttacked = playerAttacked.gameboard;
         let rowNumber = Math.floor(Math.random()*10);
         let columnNumber = Math.floor(Math.random()*10);
         let cellNumberString =rowNumber.toString()+columnNumber.toString();
         let cellDOM = document.querySelector(".playerOne>.board>.index"+cellNumberString);//fix: replace with getRandomCell
         //if it is space or ship not hit then attack & display & return
+        setTimeout(()=>{
+            if(gameboardAttacked.board[rowNumber][columnNumber]==undefined || cellDOM.textContent !== "x"){
+                //or dom display doesnt have an x
+                gameboardAttacked.receiveAttack(rowNumber,columnNumber);
+                Display.gameboard(gameboardAttacked,"playerOne");
+             }
+             else{
+                 Computer.takeTurn();
+             }
+        },500)
         
-        if(gameboardAttacked.board[rowNumber][columnNumber]==undefined || cellDOM.textContent !== "x"){
-           //or dom display doesnt have an x
-           gameboardAttacked.receiveAttack(rowNumber,columnNumber);
-           Display.gameboard(gameboardAttacked,"playerOne");
-        }
-        else{
-            Computer.takeTurn();
-        }
-        //else take another Turn
-        ///d
-        //send attack to gameboard
-        //gameboardAttacked.receiveAttack(rowNumberClicked,columnNumberClicked);
     }
     function placeShips(){
         let shipLengths =[5,4,4,3,3,3,2,2,2,2];
