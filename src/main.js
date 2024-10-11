@@ -183,29 +183,38 @@ const Game = (function(){
                 //find gameboard index
                 let rowNumberClicked = (cell.classList.value).slice(5,6);//index11
                 let columnNumberClicked = (cell.classList.value).slice(6,7);
-                //send attack to gameboard
-                gameboardAttacked.receiveAttack(rowNumberClicked,columnNumberClicked);
-                //display attack
-                Display.hiddenGameboard(gameboardAttacked,"playerTwo");
-
-                let winPopUp  = document.querySelector(".win");
-                let text = document.querySelector(".win>p");
-                let closeButton5 = document.querySelector(".close5");
-                closeButton5.addEventListener("click",(e)=>{
-                    winPopUp.close();
-                });
-                //if game over stop 
-                if(gameboardAttacked.result == "All ships sunk"){
-                    text.textContent = "Game over. Winner is player 1!";
-                    winPopUp.showModal();
+                //check if undefined or ship
+                let cellStatus = cell.id;
+                //if cell is already hit dont attack
+                if(cellStatus == "miss"||cellStatus == "shipHit"||cellStatus == "shipSunk"){
+                    return
                 }
-                else if(playersGameboard.result == "All ships sunk"){
-                    text.textContent = "Game over. Winner is player 2!";
-                    winPopUp.showModal();
+                else{ //attack and move game forward
+                    //send attack to gameboard
+                    gameboardAttacked.receiveAttack(rowNumberClicked,columnNumberClicked);
+                    //display attack
+                    Display.hiddenGameboard(gameboardAttacked,"playerTwo");
+                    let winPopUp  = document.querySelector(".win");
+                    let text = document.querySelector(".win>p");
+                    let closeButton5 = document.querySelector(".close5");
+                    closeButton5.addEventListener("click",(e)=>{
+                        winPopUp.close();
+                    });
+                    //if game over stop 
+                    if(gameboardAttacked.result == "All ships sunk"){
+                        text.textContent = "Game over. Winner is player 1!";
+                        winPopUp.showModal();
+                    }
+                    else if(playersGameboard.result == "All ships sunk"){
+                        text.textContent = "Game over. Winner is player 2!";
+                        winPopUp.showModal();
+                    }
+                    else{//otherwise computer turn
+                        Computer.takeTurn();
+                    }
                 }
-                else{//otherwise computer turn
-                    Computer.takeTurn();
-                }   
+            
+                   
             });
         });
     }
