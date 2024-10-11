@@ -5,11 +5,8 @@ let playerOne = new Player("real");
 let playerOneBoard = playerOne.gameboard;
 let playerTwo = new Player("computer");
 let playerTwoBoard = playerTwo.gameboard;
-console.log("playerOne info");
-console.log(playerOne);
-console.log("playerTwo info");
-console.log(playerTwo);
-
+let playerOneCounter=0;
+let playerTwoCounter=0;
 
 const Display = (function(){
     function gameboard(gameboard,player){
@@ -126,12 +123,14 @@ const Computer = (function(){
             if(gameboardAttacked.board[rowNumber][columnNumber]==undefined || cellDOM.textContent !== "x"){
                 //or dom display doesnt have an x
                 gameboardAttacked.receiveAttack(rowNumber,columnNumber);
+                playerTwoCounter++;
                 Display.gameboard(gameboardAttacked,"playerOne");
+                Game.winCheck();
              }
              else{
                  Computer.takeTurn();
              }
-        },500)
+        },1000)
         
     }
     function placeShips(){
@@ -155,7 +154,6 @@ const Computer = (function(){
             else{
                 playerTwoBoard.placeShip(ship,rowNumber,columnNumber,orientationNumber)
                 Display.hiddenGameboard(playerTwoBoard,"playerTwo")
-                console.log(playerTwoBoard)
             }
 
         }
@@ -166,56 +164,64 @@ const Computer = (function(){
 
 const Game = (function(){
     function play(){
-        
         let allSquareDOM = document.querySelectorAll(".playerTwo>.board>*");
         allSquareDOM.forEach((cell)=>{
             cell.addEventListener("click",(e)=>{
-                
-                //if the rounds are off only allow to player one,else player two
-                let playerAttacked = playerTwo;
-                let playersGameboard = playerOne.gameboard;
-                let gameboardAttacked = playerAttacked.gameboard;
-                //stop if game already finished
-                if(gameboardAttacked.result=="All ships sunk"||playersGameboard.result=="All ships sunk"){return}
-                //find gameboard index
-                let rowNumberClicked = (cell.classList.value).slice(5,6);//index11
-                let columnNumberClicked = (cell.classList.value).slice(6,7);
-                //check if undefined or ship
-                let cellStatus = cell.id;
-                //if cell is already hit dont attack
-                if(cellStatus == "miss"||cellStatus == "shipHit"||cellStatus == "shipSunk"){
-                    return
-                }
-                else{ //attack and move game forward
-                    //send attack to gameboard
-                    gameboardAttacked.receiveAttack(rowNumberClicked,columnNumberClicked);
-                    //display attack
-                    Display.hiddenGameboard(gameboardAttacked,"playerTwo");
-                    let winPopUp  = document.querySelector(".win");
-                    let text = document.querySelector(".win>p");
-                    let closeButton5 = document.querySelector(".close5");
-                    closeButton5.addEventListener("click",(e)=>{
-                        winPopUp.close();
-                    });
-                    //if game over stop 
-                    if(gameboardAttacked.result == "All ships sunk"){
-                        text.textContent = "Game over. Winner is player 1!";
-                        winPopUp.showModal();
+                if(playerOneCounter == playerTwoCounter){
+                    //if the rounds are off only allow to player one,else player two
+                    let playerAttacked = playerTwo;
+                    let playersGameboard = playerOne.gameboard;
+                    let gameboardAttacked = playerAttacked.gameboard;
+                    //stop if game already finished
+                    if(gameboardAttacked.result=="All ships sunk"||playersGameboard.result=="All ships sunk"){return}
+                    //find gameboard index
+                    let rowNumberClicked = (cell.classList.value).slice(5,6);//index11
+                    let columnNumberClicked = (cell.classList.value).slice(6,7);
+                    //check if undefined or ship
+                    let cellStatus = cell.id;
+                    //if cell is already hit dont attack
+                    if(cellStatus == "miss"||cellStatus == "shipHit"||cellStatus == "shipSunk"){
+                        return
                     }
-                    else if(playersGameboard.result == "All ships sunk"){
-                        text.textContent = "Game over. Winner is player 2!";
-                        winPopUp.showModal();
-                    }
-                    else{//otherwise computer turn
-                        Computer.takeTurn();
+                    else{ //attack and move game forward
+                        //send attack to gameboard
+                        gameboardAttacked.receiveAttack(rowNumberClicked,columnNumberClicked);
+                        playerOneCounter++;
+                        //display attack
+                        Display.hiddenGameboard(gameboardAttacked,"playerTwo");
+                        let winPopUp  = document.querySelector(".win");
+                        let closeButton5 = document.querySelector(".close5");
+                        closeButton5.addEventListener("click",(e)=>{
+                            winPopUp.close();
+                        });
+                        //if game over stop 
+                        if(Game.winCheck()==true){
+                            return
+                        }
+                        else{//otherwise computer turn
+                            Computer.takeTurn();
+                        }
                     }
                 }
-            
-                   
             });
         });
     }
-    return {play} 
+    function winCheck(){
+        if(playerTwoBoard.result == "All ships sunk"){
+            text.textContent = "Game over. Winner is player 1!";
+            winPopUp.showModal();
+            return true
+        }
+        else if(playerOneBoard.result == "All ships sunk"){
+            text.textContent = "Game over. Winner is player 2!";
+            winPopUp.showModal();
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    return {play,winCheck} 
 })();
 
 const Form1 = (function(){
